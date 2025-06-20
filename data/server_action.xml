@@ -1,0 +1,29 @@
+<odoo>
+
+<!--    <record id="crm_lead_set_high_priority_action" model="base.automation">-->
+<!--        <field name="name">Set High Priority on Revenue &gt; 10000</field>-->
+<!--        <field name="model_id" ref="crm.model_crm_lead"/>-->
+<!--        <field name="trigger">on_create_or_write</field>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            if record.expected_revenue &gt; 10000:-->
+<!--                record.priority = 'high'-->
+<!--        </field>-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <record id="crm_lead_set_high_priority_action" model="base.automation">
+        <field name="name">Set High Priority on Revenue &gt; 10000</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_create_or_write</field>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.expected_revenue:
+    if record.expected_revenue > 10000:
+        record.write({'priority': '2'})
+        # Note: You can remove logging if not needed
+]]></field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>
